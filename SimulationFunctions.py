@@ -28,18 +28,23 @@ def get_default_parameters():
     N=2
     Prob_list=[0.2,0.8]
     lambda_parameter=200
-    Q_size_list=[10,20]
+    Q_size_list=[2,10]
     mu_list=[20,190]
     return T, N, Prob_list, lambda_parameter, Q_size_list, mu_list
 def get_parameters():
     #Creates values for Simulation, based on input from command line
-    args_list=sys.argv
+    args_list=sys.argv[1:]
     T=int(args_list[0])
+
     N=int(args_list[1])
+
     Prob_list=list(map(float,args_list[2:2+N]))
+
     lambda_parameter=int(args_list[2+N])
+
     Q_size_list=list(map(int,args_list[3+N:3+2*N]))
-    mu_list=list(map(float,args_list[3+2*N:3+3*N]))
+    mu_list=list(map(float,args_list[3+2*N:]))#list(map(float,args_list[3+2*N:3+3*N]))
+
 
     return T,N,Prob_list,lambda_parameter,Q_size_list,mu_list
 
@@ -134,8 +139,9 @@ if __name__ == '__main__':
     SUM_OF_TIME_WAITED_FOR_SERVICE = 0
     SUM_OF_TIME_SERVICED = 0
     #print(sys.argv)
+
     #Defining Parameters
-    T, N, Prob_list, lambda_parameter, Q_size_list, mu_list=get_default_parameters()
+    T, N, Prob_list, lambda_parameter, Q_size_list, mu_list=get_parameters()
     prob_delim_list=create_probability_delimiters(Prob_list)
     event_list=[]
     event_list.append((LOAD_BALANCER_SERVER_NUMBER,None,np.random.exponential(scale=1/lambda_parameter)))
