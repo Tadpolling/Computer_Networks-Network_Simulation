@@ -126,7 +126,7 @@ def print_output(A,B,T_end,sum_T_w,sum_T_S):
         T_w=sum_T_w/A
         T_s=sum_T_S/A
 
-    print(f"{A} {B} {T_end} {T_w} {T_s}\n")
+    print(f"{A} {B} {T_end} {T_s} {T_w}\n")
 if __name__ == '__main__':
     global NUMBER_OF_THROWN_OUT_REQUESTS
     global NUMBER_OF_REQUESTS_SERVICED
